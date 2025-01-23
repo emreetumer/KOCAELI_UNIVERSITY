@@ -1,0 +1,184 @@
+﻿@page
+@model EvrakTakip.Pages.Mevraklar.IndexModel
+@using EvrakTakip.Utility
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+
+<partial name="_StatusMessage" model="Model.DurumMesaj" />
+<h2 class="text-info py-2">Kullanıcı Evrak Kaydı</h2>
+
+<div class="container backgroundwhite">
+
+    <div class="card">
+
+        <div class="card-header bg-dark text-light ml-0 row container">
+            <div class="col-6">
+                <i class="fas fa-file"></i>
+            </div>
+
+            <div class="col-6 text-right">
+                @if (User.IsInRole(StatikRoller.AdminKullanici))
+                {
+                    <a asp-page="/Kullanicilar/Index" class="btn btn-outline-info btn-sm">Kullanıcıları Listele</a>
+                }
+            </div>
+        </div>
+
+
+        <div class="card-body">
+            <div class="row" style="padding-bottom:40px; padding-top:20px;">
+                <div class="col-md-3">
+                    <p>
+                        <a asp-page="Create" asp-route-userId="@Model.KullaniciEvrakViewModel.KullaniciObj.Id" class="btn btn-info form-control">
+                            <i class="fas fa-plus"></i> &nbsp; Evrak Ekle
+                        </a>
+                    </p>
+                </div>
+
+                <div class="col-md-6 offset-md-3">
+
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <label asp-for="KullaniciEvrakViewModel.KullaniciObj.AdSoyad"></label>
+                        </div>
+
+                        <div class="col-sm-8" style="padding-bottom:5px">
+                            <input asp-for="KullaniciEvrakViewModel.KullaniciObj.AdSoyad" disabled class="form-control" />
+                        </div>
+
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <label asp-for="KullaniciEvrakViewModel.KullaniciObj.Email"></label>
+                        </div>
+                        <div class="col-sm-8" style="padding-bottom:5px">
+                            <input asp-for="KullaniciEvrakViewModel.KullaniciObj.Email" disabled class="form-control" />
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <label asp-for="KullaniciEvrakViewModel.KullaniciObj.PhoneNumber"></label>
+                        </div>
+                        <div class="col-sm-8" style="padding-bottom:5px">
+                            <input asp-for="KullaniciEvrakViewModel.KullaniciObj.PhoneNumber" disabled class="form-control" />
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+            @if (Model.KullaniciEvrakViewModel.Evraklar.Count() == 0)
+            {
+                <p>
+                    Evrak Kayıtı Bulunamadı. Lütfen Evrak Kayıtı Ekleyiniz.
+                </p>
+            }
+
+            else
+            {
+                <table class="table table-striped border">
+                    <tr class="table-secondary">
+
+                        <th>
+                            @Html.DisplayNameFor(a => a.KullaniciEvrakViewModel.Evraklar.FirstOrDefault().Gonderen)
+                        </th>
+
+                        <th>
+                            @Html.DisplayNameFor(a => a.KullaniciEvrakViewModel.Evraklar.FirstOrDefault().Alici)
+                        </th>
+
+                        <th>
+                            @Html.DisplayNameFor(a => a.KullaniciEvrakViewModel.Evraklar.FirstOrDefault().Model)
+                        </th>
+
+                        <th>
+                            @Html.DisplayNameFor(a => a.KullaniciEvrakViewModel.Evraklar.FirstOrDefault().EvrakTipi)
+                        </th>
+
+                        <th>
+
+                        </th>
+
+                        @if (User.IsInRole(StatikRoller.AdminKullanici))
+                        {
+                            <th></th>
+                        }
+
+                        <th></th>
+
+                    </tr>
+
+                    @foreach (var item in Model.KullaniciEvrakViewModel.Evraklar)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(a => item.Gonderen)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(a => item.Alici)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(a => item.Model)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(a => item.EvrakTipi)
+                            </td>
+
+                            <td>
+                                <a class="btn btn-secondary" asp-page="../Bakimlar/BakimGecmisi" asp-route-evrakId="@item.Id">
+                                    <i class="fas fa-wrench"></i> &nbsp; Evrak Geçmişi
+                                </a>
+                            </td>
+
+                            @if (User.IsInRole(StatikRoller.AdminKullanici))
+                            {
+                                <td>
+                                    <a class="btn btn-success" asp-page="../Bakimlar/Create" asp-route-evrakId="@item.Id">
+                                        <i class="fas fa-plus"></i> &nbsp; Yeni Evrak Tipi Oluştur
+                                    </a>
+                                </td>
+                            }
+
+                            <td>
+
+                                <div class="btn-group" role="group">
+                                    <a class="btn btn-primary text-white" asp-page="Edit" asp-route-Id="@item.Id">
+                                        <i class="fas fa-edit"></i> &nbsp; &nbsp;
+                                    </a>
+
+                                    <a class="btn btn-danger text-white" asp-page="Delete" asp-route-Id="@item.Id">
+                                        <i class="fas fa-trash-alt"></i> &nbsp; &nbsp;
+                                    </a>
+
+                                </div>
+
+                            </td>
+
+
+
+
+                        </tr>
+                    }
+                </table>
+            }
+
+
+        </div>
+
+    </div>
+
+</div>

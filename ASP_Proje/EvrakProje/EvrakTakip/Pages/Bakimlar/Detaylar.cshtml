@@ -1,0 +1,100 @@
+﻿@page
+@model EvrakTakip.Pages.Bakimlar.DetaylarModel
+@{
+    ViewData["Title"] = "Detaylar";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<div class="container pt-4 pb-2 row">
+    <div class="col-6">
+        <h2 class="text-info py-2">Evrak Detayı</h2>
+    </div>
+    <div class="col-3 offset-3 text-right py-2">
+        <a asp-page="../Bakimlar/BakimGecmisi" asp-route-evrakId="@Model.bakimHizmetiGenel.EvrakId" class="btn btn-outline-success form-control">Listeye Geri Dön</a>
+    </div>
+</div>
+
+
+<div class="container backgroundwhite">
+    <div class="card">
+
+        <div class="card-header bg-dark text-light ml-0 row container">
+            <div class="col-1 text-center pt-3 text-white-50">
+                <i class="fas fa-user fa-2x"></i>
+            </div>
+
+            <div class="col-5">
+                <label class="text-info">@Model.bakimHizmetiGenel.Evrak.ApplicationUser.AdSoyad</label><br />
+                <label class="text-info">@Model.bakimHizmetiGenel.Evrak.ApplicationUser.Email / @Model.bakimHizmetiGenel.Evrak.ApplicationUser.PhoneNumber</label><br />
+            </div>
+
+            <div class="col-5 text-right">
+                <label class="text-info">@Model.bakimHizmetiGenel.Evrak.EvrakTipi  @*@Model.bakimHizmetiGenel.Evrak.Alici @Model.bakimHizmetiGenel.Evrak.Model*@ </label> <br />
+                <label class="text-info">@Model.bakimHizmetiGenel.Evrak.Yil</label>
+            </div>
+
+            <div class="col-1 text-center pt-3 text-white-50">
+                <i class="fas fa-file fa-2x"></i>
+            </div>
+        </div>
+
+
+
+        <div class="card-body">
+            <div class="row pt-3">
+                <div class="col-7">
+                    <table class="table table-striped border">
+                        <tr class="table-secondary">
+                            <th>Evrak Adı @*@Html.DisplayNameFor(a => Model.bakimHizmetiDetay[0].EvrakAdi)*@ </th>
+                            <th>Evrak Fiyatı @*@Html.DisplayNameFor(a => Model.bakimHizmetiDetay[0].EvrakFiyati)*@ </th>
+                        </tr>
+
+                        @foreach (var item in Model.bakimHizmetiDetay)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(a => item.EvrakAdi)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(a => item.EvrakFiyati)
+                                </td>
+                            </tr>
+                        }
+
+                        <tr style="background-color:cornflowerblue">
+                            <td colspan="1">
+                                <h6 class="text-white">Toplam Fiyat:</h6>
+                            </td>
+                            <td colspan="2">
+                                <h6 class="text-white">@Model.bakimHizmetiGenel.ToplamFiyat &nbsp; TL</h6>
+                            </td>
+                        </tr>
+
+
+                    </table>
+                </div>
+
+                <div class="col-5 px-4 pb-2">
+                    <div class="row">
+                        <div class="col-3">
+                            <label asp-for="bakimHizmetiGenel.EvrakSayacSaat" class="form-control" style="border:none;">Kayıt Süresi:</label>
+                        </div>
+                        <div class="col-9">
+                            <input asp-for="bakimHizmetiGenel.EvrakSayacSaat" readonly id="txtEvrakSayacSaat" class="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="row py-2">
+                        <div class="col-12">
+                            <textarea placeholder="Ek Açıklamalar..." readonly asp-for="bakimHizmetiGenel.Detaylar" class="form-control" style="height:100px"></textarea>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+</div>

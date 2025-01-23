@@ -1,0 +1,65 @@
+﻿@page
+@model EvrakTakip.Pages.EvrakTipleri.IndexModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<br />
+<br />
+<div class=" border backgroundwhite">
+
+    <div class="row">
+        <div class="col-6">
+            <h2 class="text-info">Evrak Tipleri</h2>
+        </div>
+        <div class="col-6 text-right">
+            <a asp-page="Create" class="btn btn-info"><i class="fas fa-plus"></i>&nbsp; Yeni Evrak Tipi Oluştur</a>
+        </div>
+    </div>
+    <br />
+    <div>
+        @if (Model.EvrakTipi.Count == 0)
+        {
+            <p>Evrak Tipi Bulunamadı. Lütfen Evrak Tipi Oluşturunuz!</p>
+        }
+
+        else
+        {
+            <table class="table table-striped border">
+                <tr class="table-secondary">
+                    <th>Evrak Adı
+                        @*@Html.DisplayNameFor(a => a.EvrakTipi[0].EvrakAdi)*@
+                    </th>
+                    <th>Evrak Fiyatı
+                        @*@Html.DisplayNameFor(a => a.EvrakTipi[0].EvrakFiyati)*@
+                    </th>
+                    <th>İŞLEMLER</th>
+                </tr>
+
+                @foreach (var item in Model.EvrakTipi)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(a => item.EvrakAdi)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(a => item.EvrakFiyati)
+                        </td>
+                        <td style="width:150px">
+                            <div class="btn-group" role="group">
+                                <a class="btn btn-primary text-white" asp-page="Edit" asp-route-Id="@item.Id"><i class="fas fa-edit"></i></a>
+                                <a class="btn btn-success text-white" asp-page="Details" asp-route-Id="@item.Id"><i class="fas fa-list"></i></a>
+                                <a class="btn btn-danger text-white" asp-page="Delete" asp-route-Id="@item.Id"><i class="far fa-trash-alt"></i></a>
+                            </div>
+
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        }
+
+    </div>
+</div>
+

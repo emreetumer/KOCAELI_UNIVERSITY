@@ -1,0 +1,102 @@
+﻿@page
+@model EvrakTakip.Pages.Bakimlar.BakimGecmisiModel
+@{
+    ViewData["Title"] = "BakimGecmisi";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<div class="container pt-4 pb-2 row">
+    <div class="col-6">
+        <h2 class="text-info py-2">Evrak Geçmişi</h2>
+    </div>
+    <div class="col-3 offset-3 text-right py-2">
+        <a asp-page="../Mevraklar/Index" asp-route-kullaniciId="@Model.KullaniciId" class="btn btn-outline-success form-control">Listeye Geri Dön</a>
+    </div>
+</div>
+
+
+@if (Model.BakimHizmetiGenel.Count == 0)
+{
+    <div class="backgroundwhite">
+        <p>Evrak Geçmişi Bulunamamıştır!</p>
+    </div>
+}
+
+else
+{
+    <div class="container backgroundwhite">
+        <div class="card">
+            <div class="card-header bg-dark text-light ml-0 row container">
+                <div class="col-1 text-center pt-3 text-white-50">
+                    <i class="fas fa-user fa-2x"></i>
+                </div>
+
+                <div class="col-5">
+                    <label class="text-info">@Model.BakimHizmetiGenel[0].Evrak.ApplicationUser.AdSoyad</label><br />
+                    <label class="text-info">@Model.BakimHizmetiGenel[0].Evrak.ApplicationUser.Email / @Model.BakimHizmetiGenel[0].Evrak.ApplicationUser.PhoneNumber</label><br />
+                </div>
+
+                <div class="col-5 text-right">
+                    <label class="text-info">@Model.BakimHizmetiGenel[0].Evrak.EvrakTipi  @*@Model.BakimHizmetiGenel[0].Evrak.Alici @Model.BakimHizmetiGenel[0].Evrak.Model*@  </label> <br />
+                    <label class="text-info">@Model.BakimHizmetiGenel[0].Evrak.Yil</label>
+                </div>
+
+                <div class="col-1 text-center pt-3 text-white-50">
+                    <i class="fas fa-file fa-2x"></i>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <div class="card-body">
+            <table class="table table-striped border">
+                <tr class="table-secondary">
+                    <th>Toplam Kayıt Saati
+                        @*@Html.DisplayNameFor(a => Model.BakimHizmetiGenel[0].EvrakSayacSaat)*@
+                    </th>
+                    <th>Toplam Fiyat
+                        @*@Html.DisplayNameFor(a => Model.BakimHizmetiGenel[0].ToplamFiyat)*@
+                    </th>
+                    <th>Detaylar
+                        @*@Html.DisplayNameFor(a => Model.BakimHizmetiGenel[0].Detaylar)*@
+                    </th>
+                    <th>Kayıt Tarihi
+                        @*@Html.DisplayNameFor(a => Model.BakimHizmetiGenel[0].EklendigiTarih)*@
+                    </th>
+
+                    <th>
+
+                    </th>
+
+                </tr>
+
+                @foreach (var item in Model.BakimHizmetiGenel)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(m => item.EvrakSayacSaat)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(m => item.ToplamFiyat)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(m => item.Detaylar)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(m => item.EklendigiTarih)
+                        </td>
+
+                        <td>
+                            <a asp-page="Detaylar" class="btn btn-info form-control" asp-route-evrakid="@item.Id"><i class="fas fa-info-circle"></i> &nbsp; Detaylar</a>
+                        </td>
+
+                    </tr>
+                }
+
+            </table>
+        </div>
+
+    </div>
+}

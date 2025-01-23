@@ -1,0 +1,104 @@
+﻿@page
+@model EvrakTakip.Pages.Kullanicilar.DeleteModel
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<br />
+<h2 class="text-info">Kullanıcı Sil</h2>
+<br />
+
+<form method="post">
+    <input asp-for="ApplicationUser.Id" hidden />
+    <div class="border backgroundwhite">
+
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-sm-2">Ad-Soyad
+                    @*<label asp-for="ApplicationUser.AdSoyad" class="text-info"></label>*@
+                </div>
+
+                <div class="col-sm-5">
+                    <input asp-for="ApplicationUser.AdSoyad" disabled class="form-control" />
+                </div>
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-sm-2">Email
+                    @*<label asp-for="ApplicationUser.Email" class="text-info"></label>*@
+                </div>
+
+                <div class="col-sm-5">
+                    <input asp-for="ApplicationUser.Email" disabled class="form-control" />
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-sm-2">Telefon
+                    @*<label asp-for="ApplicationUser.PhoneNumber" class="text-info"></label>*@
+                </div>
+
+                <div class="col-sm-5">
+                    <input asp-for="ApplicationUser.PhoneNumber" disabled class="form-control" />
+                </div>
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-sm-2">Adres
+                    @*<label asp-for="ApplicationUser.Adres" class="text-info"></label>*@
+                </div>
+
+                <div class="col-sm-5">
+                    <input asp-for="ApplicationUser.Adres" disabled class="form-control" />
+                </div>
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-sm-2">Şehir
+                    @*<label asp-for="ApplicationUser.Sehir" class="text-info"></label>*@
+                </div>
+
+                <div class="col-sm-5">
+                    <input asp-for="ApplicationUser.Sehir" disabled class="form-control" />
+                </div>
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-sm-2">Posta Kodu
+                    @*<label asp-for="ApplicationUser.PostaKodu" class="text-info"></label>*@
+                </div>
+
+                <div class="col-sm-5">
+                    <input asp-for="ApplicationUser.PostaKodu" disabled class="form-control" />
+                </div>
+
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-5 offset-2">
+                <partial name="_SilVeGeriDonButonlari" />
+            </div>
+        </div>
+
+    </div>
+
+</form>

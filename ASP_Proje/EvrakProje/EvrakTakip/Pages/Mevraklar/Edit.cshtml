@@ -1,0 +1,136 @@
+﻿@page
+@model EvrakTakip.Pages.Mevraklar.EditModel
+@{
+
+    ViewData["Title"] = "Edit";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<br />
+<h2 class="text-info">Evrak Bilgisi Güncelle</h2>
+<br />
+
+<form method="post">
+
+    <div class="border backgroundwhite">
+        <input hidden asp-for="Evrak.Id" />
+        <input hidden asp-for="Evrak.KullaniciId" />
+
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Evrak.Gonderen"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Evrak.Gonderen" class="form-control" />
+            </div>
+
+            <span asp-validation-for="Evrak.Gonderen" class="text-danger"></span>
+
+        </div>
+
+
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Evrak.Alici"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Evrak.Alici" class="form-control" />
+            </div>
+
+            <span asp-validation-for="Evrak.Alici" class="text-danger"></span>
+
+        </div>
+
+
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Evrak.Model"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Evrak.Model" class="form-control" />
+            </div>
+
+            <span asp-validation-for="Evrak.Model" class="text-danger"></span>
+
+        </div>
+
+
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Evrak.EvrakTipi"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Evrak.EvrakTipi" class="form-control" />
+            </div>
+
+            <span asp-validation-for="Evrak.EvrakTipi" class="text-danger"></span>
+
+        </div>
+
+
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Evrak.Yil"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Evrak.Yil" class="form-control" />
+            </div>
+
+            <span asp-validation-for="Evrak.Yil" class="text-danger"></span>
+
+        </div>
+
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Evrak.EvrakSaatSayac"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Evrak.EvrakSaatSayac" class="form-control" />
+            </div>
+
+            <span asp-validation-for="Evrak.EvrakSaatSayac" class="text-danger"></span>
+
+        </div>
+
+
+
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Evrak.EkAciklama"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Evrak.EkAciklama" class="form-control" />
+            </div>
+
+            <span asp-validation-for="Evrak.EkAciklama" class="text-danger"></span>
+
+        </div>
+
+
+        <div class="form-group row">
+            <div class="col-5 offset-2">
+                <div class="row">
+                    <div class="col-6">
+                        <input type="submit" class="btn btn-info form-control" value="Güncelle" />
+                    </div>
+
+                    <div class="col-6">
+                        <a asp-page="Index" asp-route-kullaniciId="@Model.Evrak.KullaniciId" class="btn btn-success form-control">Listeye Geri Dön</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+</form>
+
+@section Scripts {
+
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+}
+

@@ -1,0 +1,117 @@
+﻿@page
+@model EvrakTakip.Pages.Kullanicilar.EditModel
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<br />
+<h2 class="text-info">Kullanıcı Düzenle</h2>
+<br />
+
+<form method="post">
+
+    <div class="border backgroundwhite">
+
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input asp-for="ApplicationUser.Id" hidden />
+        <input asp-for="ApplicationUser.Email" hidden />
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-sm-2">Ad-Soyad
+                    @*<label asp-for="ApplicationUser.AdSoyad" class="text-info"></label>*@
+                </div>
+
+                <div class="col-sm-5">
+                    <input asp-for="ApplicationUser.AdSoyad" class="form-control" />
+                </div>
+
+            </div>
+            <span asp-validation-for="ApplicationUser.AdSoyad" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-sm-2">Email
+                    @*<label asp-for="ApplicationUser.Email" class="text-info"></label>*@
+                </div>
+
+                <div class="col-sm-5">
+                    <input asp-for="ApplicationUser.Email" disabled class="form-control" />
+                </div>
+
+            </div>
+            <span asp-validation-for="ApplicationUser.Email" class="text-danger"></span>
+        </div>
+
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-sm-2">Telefon Numarası
+                    @*<label asp-for="ApplicationUser.PhoneNumber" class="text-info"></label>*@
+                </div>
+
+                <div class="col-sm-5">
+                    <input asp-for="ApplicationUser.PhoneNumber" class="form-control" />
+                </div>
+
+            </div>
+            <span asp-validation-for="ApplicationUser.PhoneNumber" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-sm-2">Adres
+                    @*<label asp-for="ApplicationUser.Adres" class="text-info"></label>*@
+                </div>
+
+                <div class="col-sm-5">
+                    <input asp-for="ApplicationUser.Adres" class="form-control" />
+                </div>
+
+            </div>
+            <span asp-validation-for="ApplicationUser.Adres" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-sm-2">Şehir
+                    @*<label asp-for="ApplicationUser.Sehir" class="text-info"></label>*@
+                </div>
+
+                <div class="col-sm-5">
+                    <input asp-for="ApplicationUser.Sehir" class="form-control" />
+                </div>
+
+            </div>
+            <span asp-validation-for="ApplicationUser.Sehir" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-sm-2">Posta Kodu
+                    @*<label asp-for="ApplicationUser.PostaKodu" class="text-info"></label>*@
+                </div>
+
+                <div class="col-sm-5">
+                    <input asp-for="ApplicationUser.PostaKodu" class="form-control" />
+                </div>
+
+            </div>
+            <span asp-validation-for="ApplicationUser.PostaKodu" class="text-danger"></span>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-5 offset-2">
+                <partial name="_DuzenleVeGeriDonButonlari" />
+            </div>
+        </div>
+
+    </div>
+
+</form>
+
+@section scripts{
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

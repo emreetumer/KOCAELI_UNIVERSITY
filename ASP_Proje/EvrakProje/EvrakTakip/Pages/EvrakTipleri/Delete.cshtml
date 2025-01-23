@@ -1,0 +1,43 @@
+﻿@page
+@model EvrakTakip.Pages.EvrakTipleri.DeleteModel
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<br />
+<h2 class="text-info">Evrak Tipi Sil</h2>
+<br />
+<form method="post">
+    <input asp-for="EvrakTipi.Id" hidden />
+    <div class="border backgroundwhite">
+
+        <div class="form-group row">
+            <div class="col-2">Evrak Tipi Adı:
+                @*<label asp-for="EvrakTipi.EvrakAdi"></label>*@
+            </div>
+            <div class="col-5">
+                <input asp-for="EvrakTipi.EvrakAdi" disabled class="form-control" />
+            </div>
+
+        </div>
+
+        <div class="form-group row">
+            <div class="col-2">Evrak Tipi Fiyatı:
+                @*<label asp-for="EvrakTipi.EvrakFiyati"></label>*@
+            </div>
+            <div class="col-5">
+                <input asp-for="EvrakTipi.EvrakFiyati" disabled class="form-control" />
+            </div>
+
+        </div>
+
+        <div class="form-group row">
+            <div class="col-5 offset-2">
+                <partial name="_SilVeGeriDonButonlari" />
+            </div>
+        </div>
+
+    </div>
+
+</form>
